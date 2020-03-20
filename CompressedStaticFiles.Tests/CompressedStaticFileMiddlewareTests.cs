@@ -1,7 +1,6 @@
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
 
 using FluentAssertions;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.FileProviders;
@@ -13,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CompressedStaticFiles.CompressionTypes;
 
 namespace CompressedStaticFiles.Tests
 {
@@ -98,7 +98,7 @@ namespace CompressedStaticFiles.Tests
 
             // Act
             var client = server.CreateClient();
-            client.DefaultRequestHeaders.Add("Accept-Encoding", "br, gzip");
+            client.DefaultRequestHeaders.Add("Accept-Encoding", "br");
             var response = await client.GetAsync("/i_also_exist_compressed.html");
             var content = await response.Content.ReadAsStringAsync();
 
@@ -190,7 +190,7 @@ namespace CompressedStaticFiles.Tests
             var mockFileProvider = Substitute.For<IFileProvider>();
             mockFileProvider.GetFileInfo("/i_only_exist_in_mociFileProvider.html").Returns(fileInfo);
 
-            var staticFileOptions = new StaticFileOptions() { FileProvider = mockFileProvider };
+            var staticFileOptions = new CompressedStaticFileOptions() { FileProvider = mockFileProvider };
 
             var builder = new WebHostBuilder()
                 .Configure(app =>
@@ -217,6 +217,80 @@ namespace CompressedStaticFiles.Tests
             // Assert
             response.StatusCode.Should().Be(200);
             content.Should().Be("fileprovider");
+            response.Content.Headers.TryGetValues("Content-Type", out IEnumerable<string> contentTypeValues);
+            contentTypeValues.Single().Should().Be("text/html");
+        }
+
+        [TestMethod]
+        public async Task Should_use_gzip_before_brotli_CompressedStaticFileOptions()
+        {
+            // Arrange
+            var options = new CompressedStaticFileOptions();
+            options.CompressionTypes.Add<Gzip>();
+            options.CompressionTypes.Add<Brotli>();
+
+            var builder = new WebHostBuilder()
+                .Configure(app =>
+                {
+                    app.UseCompressedStaticFiles(options);
+                    app.Use(next =>
+                    {
+                        return async context =>
+                        {
+                            // this test should never call the next middleware
+                            // set status code to 999 to detect a test failure
+                            context.Response.StatusCode = 999;
+                        };
+                    });
+                }).UseWebRoot(Path.Combine(Environment.CurrentDirectory, "wwwroot"));
+            var server = new TestServer(builder);
+
+            // Act
+            var client = server.CreateClient();
+            client.DefaultRequestHeaders.Add("Accept-Encoding", "br, gzip");
+            var response = await client.GetAsync("/i_also_exist_compressed.html");
+            var content = await response.Content.ReadAsStringAsync();
+
+            // Assert
+            response.StatusCode.Should().Be(200);
+            content.Should().Be("gzip");
+            response.Content.Headers.TryGetValues("Content-Type", out IEnumerable<string> contentTypeValues);
+            contentTypeValues.Single().Should().Be("text/html");
+        }
+
+        [TestMethod]
+        public async Task Should_use_brotli_before_gzip_CompressedStaticFileOptions()
+        {
+            // Arrange
+            var options = new CompressedStaticFileOptions();
+            options.CompressionTypes.Add<Brotli>();
+            options.CompressionTypes.Add<Gzip>();
+
+            var builder = new WebHostBuilder()
+                .Configure(app =>
+                {
+                    app.UseCompressedStaticFiles(options);
+                    app.Use(next =>
+                    {
+                        return async context =>
+                        {
+                            // this test should never call the next middleware
+                            // set status code to 999 to detect a test failure
+                            context.Response.StatusCode = 999;
+                        };
+                    });
+                }).UseWebRoot(Path.Combine(Environment.CurrentDirectory, "wwwroot"));
+            var server = new TestServer(builder);
+
+            // Act
+            var client = server.CreateClient();
+            client.DefaultRequestHeaders.Add("Accept-Encoding", "br, gzip");
+            var response = await client.GetAsync("/i_also_exist_compressed.html");
+            var content = await response.Content.ReadAsStringAsync();
+
+            // Assert
+            response.StatusCode.Should().Be(200);
+            content.Should().Be("br");
             response.Content.Headers.TryGetValues("Content-Type", out IEnumerable<string> contentTypeValues);
             contentTypeValues.Single().Should().Be("text/html");
         }
