@@ -6,7 +6,7 @@
     <Authors>Peter Andersson;Andrey Kudashkin;Mathias Raacke</Authors>
     <Company></Company>
     <Description>This will ensure that you application will serve gzipped files and brotli compressed files if the browser supports it.</Description>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/AnderssonPeter/CompressedStaticFiles/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/AnderssonPeter/CompressedStaticFiles</PackageProjectUrl>
     <PackageTags>aspnetcore;staticfiles;compression;precompressed;gzip;brotli</PackageTags>
     <PackageReleaseNotes>1.1.0
@@ -31,6 +31,13 @@ Initial release</PackageReleaseNotes>
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
