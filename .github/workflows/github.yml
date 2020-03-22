@@ -1,0 +1,49 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request 
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+
+    - name: Restore Packages
+      run: dotnet restore
+      
+    - name: Build App
+      run: dotnet build -c Release
+      
+    - name: Run Tests
+      run: dotnet test
+
+    - name: Publish NuGet
+      uses: rohith/publish-nuget@v2.2.0
+      with:
+        PROJECT_FILE_PATH: /home/runner/work/CompressedStaticFiles/CompressedStaticFiles/src/CompressedStaticFiles/CompressedStaticFiles.csproj
+        NUGET_KEY: ${{secrets.NUGET_API_KEY}} # nuget.org API key
+        # VERSION_FILE_PATH: Directory.Build.props # Filepath with version info, relative to repository root. Defaults to project file
+        # VERSION_REGEX: <Version>(.*)<\/Version> # Regex pattern to extract version info in a capturing group
+        # VERSION_STATIC: Bypasses version resolution; useful for external providers like Nerdbank.GitVersioning
+        # TAG_COMMIT: true # Flag to enable / disalge git tagging
+        # TAG_FORMAT: v* # Format of the git tag, [*] gets replaced with version
+        # PACKAGE_NAME: NuGet package name, required when it's different from project name. Defaults to project name
+
+    - uses: actions/upload-artifact@v1
+      with:
+        name: CompressedStaticFiles
+        path: /home/runner/work/CompressedStaticFiles/CompressedStaticFiles/src/CompressedStaticFiles/bin/Release/
