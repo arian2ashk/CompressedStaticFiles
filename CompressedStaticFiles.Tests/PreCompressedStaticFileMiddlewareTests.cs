@@ -295,6 +295,50 @@ namespace CompressedStaticFiles.Tests
             response.Content.Headers.TryGetValues("Content-Type", out IEnumerable<string> contentTypeValues);
             contentTypeValues.Single().Should().Be("text/html");
         }
+
+        public class TestCompressionType: ICompressionType
+        {
+            public string Encoding { get; } = "test";
+            public string Extension { get; } = ".tst";
+            public string ContentType { get; } = "application/test";
+        }
+
+        [TestMethod]
+        public async Task Should_use_custom_compression_type_when_defined()
+        {
+            // Arrange
+
+            var options = new PreCompressedStaticFileOptions();
+            options.CompressionTypes.Add<TestCompressionType>();
+
+            var builder = new WebHostBuilder()
+                .Configure(app =>
+                {
+                    app.UseCompressedStaticFiles(options);
+                    app.Use(next =>
+                    {
+                        return async context =>
+                        {
+                            // this test should never call the next middleware
+                            // set status code to 999 to detect a test failure
+                            context.Response.StatusCode = 999;
+                        };
+                    });
+                }).UseWebRoot(Path.Combine(Environment.CurrentDirectory, "wwwroot"));
+            var server = new TestServer(builder);
+
+            // Act
+            var client = server.CreateClient();
+            client.DefaultRequestHeaders.Add("Accept-Encoding", "test");
+            var response = await client.GetAsync("/i_also_exist_compressed.html");
+            var content = await response.Content.ReadAsStringAsync();
+
+            // Assert
+            response.StatusCode.Should().Be(200);
+            content.Should().Be("test");
+            response.Content.Headers.TryGetValues("Content-Type", out IEnumerable<string> contentTypeValues);
+            contentTypeValues.Single().Should().Be("text/html");
+        }
     }
 }
 

@@ -20,6 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="wwwroot\i_also_exist_compressed.html.tst">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="wwwroot\i_am_smaller_in_uncompressed.html.br">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
