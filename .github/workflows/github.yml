@@ -32,9 +32,10 @@ jobs:
         run: dotnet test
 
       - name: Publish NuGet
+        if: github.ref == 'refs/heads/master'
         uses: rohith/publish-nuget@v2.2.1
         with:
-          PROJECT_FILE_PATH: /home/runner/work/CompressedStaticFiles/CompressedStaticFiles/src/CompressedStaticFiles/AspNetCore.PreCompressedStaticFiles.csproj
+          PROJECT_FILE_PATH: /home/runner/work/CompressedStaticFiles/CompressedStaticFiles/src/AspNetCore.PreCompressedStaticFiles/AspNetCore.PreCompressedStaticFiles.csproj
           NUGET_KEY: ${{secrets.NUGET_API_KEY}} # nuget.org API key
           # VERSION_FILE_PATH: Directory.Build.props # Filepath with version info, relative to repository root. Defaults to project file
           # VERSION_REGEX: <Version>(.*)<\/Version> # Regex pattern to extract version info in a capturing group
@@ -44,6 +45,7 @@ jobs:
           # PACKAGE_NAME: NuGet package name, required when it's different from project name. Defaults to project name
 
       - uses: actions/upload-artifact@v1
+        if: github.ref == 'refs/heads/master'
         with:
-          name: CompressedStaticFiles
-          path: /home/runner/work/CompressedStaticFiles/CompressedStaticFiles/src/CompressedStaticFiles/bin/Release/
+          name: PreCompressedStaticFiles
+          path: /home/runner/work/CompressedStaticFiles/CompressedStaticFiles/src/AspNetCore.PreCompressedStaticFiles/bin/Release/
