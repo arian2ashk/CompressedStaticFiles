@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AspNetCore.PreCompressedStaticFiles;
+using AspNetCore.PreCompressedStaticFiles.CompressionTypes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -37,7 +38,11 @@ namespace Example
         {
             app.UseDefaultFiles();
             app.UseDeveloperExceptionPage();
-            app.UseCompressedStaticFiles();
+
+            var options = new PreCompressedStaticFileOptions();
+            options.CompressionTypes.Add<Brotli>();
+            options.CompressionTypes.Add<Gzip>();
+            app.UsePreCompressedStaticFiles(options);
             app.UseCookiePolicy();
 
             app.UseSpa(spa =>

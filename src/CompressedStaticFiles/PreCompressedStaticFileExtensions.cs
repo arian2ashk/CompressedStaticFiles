@@ -6,7 +6,7 @@ namespace AspNetCore.PreCompressedStaticFiles
 {
     public static class PreCompressedStaticFileExtensions
     {
-        public static IApplicationBuilder UseCompressedStaticFiles(this IApplicationBuilder app)
+        public static IApplicationBuilder UsePreCompressedStaticFiles(this IApplicationBuilder app)
         {
             if (app == null)
             {
@@ -17,7 +17,7 @@ namespace AspNetCore.PreCompressedStaticFiles
         }
 
 
-        public static IApplicationBuilder UseCompressedStaticFiles(this IApplicationBuilder app, PreCompressedStaticFileOptions options)
+        public static IApplicationBuilder UsePreCompressedStaticFiles(this IApplicationBuilder app, PreCompressedStaticFileOptions options)
         {
             if (app == null)
             {

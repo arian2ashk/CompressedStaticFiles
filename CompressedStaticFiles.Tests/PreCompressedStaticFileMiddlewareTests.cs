@@ -28,7 +28,7 @@ namespace CompressedStaticFiles.Tests
             var builder = new WebHostBuilder()
                 .Configure(app =>
                 {
-                    app.UseCompressedStaticFiles();
+                    app.UsePreCompressedStaticFiles();
                     app.Use(next =>
                     {
                         return async context =>
@@ -53,7 +53,7 @@ namespace CompressedStaticFiles.Tests
             var builder = new WebHostBuilder()
                 .Configure(app =>
                 {
-                    app.UseCompressedStaticFiles();
+                    app.UsePreCompressedStaticFiles();
                     app.Use(next =>
                     {
                         return async context =>
@@ -84,7 +84,7 @@ namespace CompressedStaticFiles.Tests
             var builder = new WebHostBuilder()
                 .Configure(app =>
                 {
-                    app.UseCompressedStaticFiles();
+                    app.UsePreCompressedStaticFiles();
                     app.Use(next =>
                     {
                         return async context =>
@@ -117,7 +117,7 @@ namespace CompressedStaticFiles.Tests
             var builder = new WebHostBuilder()
                 .Configure(app =>
                 {
-                    app.UseCompressedStaticFiles();
+                    app.UsePreCompressedStaticFiles();
                     app.Use(next =>
                     {
                         return async context =>
@@ -151,7 +151,7 @@ namespace CompressedStaticFiles.Tests
             var builder = new WebHostBuilder()
                 .Configure(app =>
                 {
-                    app.UseCompressedStaticFiles();
+                    app.UsePreCompressedStaticFiles();
                     app.Use(next =>
                     {
                         return async context =>
@@ -196,7 +196,7 @@ namespace CompressedStaticFiles.Tests
             var builder = new WebHostBuilder()
                 .Configure(app =>
                 {
-                    app.UseCompressedStaticFiles(staticFileOptions);
+                    app.UsePreCompressedStaticFiles(staticFileOptions);
                     app.Use(next =>
                     {
                         return async context =>
@@ -233,7 +233,7 @@ namespace CompressedStaticFiles.Tests
             var builder = new WebHostBuilder()
                 .Configure(app =>
                 {
-                    app.UseCompressedStaticFiles(options);
+                    app.UsePreCompressedStaticFiles(options);
                     app.Use(next =>
                     {
                         return async context =>
@@ -270,7 +270,7 @@ namespace CompressedStaticFiles.Tests
             var builder = new WebHostBuilder()
                 .Configure(app =>
                 {
-                    app.UseCompressedStaticFiles(options);
+                    app.UsePreCompressedStaticFiles(options);
                     app.Use(next =>
                     {
                         return async context =>
@@ -314,7 +314,7 @@ namespace CompressedStaticFiles.Tests
             var builder = new WebHostBuilder()
                 .Configure(app =>
                 {
-                    app.UseCompressedStaticFiles(options);
+                    app.UsePreCompressedStaticFiles(options);
                     app.Use(next =>
                     {
                         return async context =>
