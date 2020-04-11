@@ -1,4 +1,4 @@
-﻿namespace CompressedStaticFiles.CompressionTypes
+﻿namespace AspNetCore.PreCompressedStaticFiles.CompressionTypes
 {
     public interface ICompressionType
     {

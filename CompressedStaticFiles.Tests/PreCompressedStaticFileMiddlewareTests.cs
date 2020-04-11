@@ -12,12 +12,13 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CompressedStaticFiles.CompressionTypes;
+using AspNetCore.PreCompressedStaticFiles;
+using AspNetCore.PreCompressedStaticFiles.CompressionTypes;
 
 namespace CompressedStaticFiles.Tests
 {
     [TestClass]
-    public class CompressedStaticFileMiddlewareTests
+    public class PreCompressedStaticFileMiddlewareTests
     {
 
         [TestMethod]
@@ -190,7 +191,7 @@ namespace CompressedStaticFiles.Tests
             var mockFileProvider = Substitute.For<IFileProvider>();
             mockFileProvider.GetFileInfo("/i_only_exist_in_mociFileProvider.html").Returns(fileInfo);
 
-            var staticFileOptions = new CompressedStaticFileOptions() { FileProvider = mockFileProvider };
+            var staticFileOptions = new PreCompressedStaticFileOptions() { FileProvider = mockFileProvider };
 
             var builder = new WebHostBuilder()
                 .Configure(app =>
@@ -225,7 +226,7 @@ namespace CompressedStaticFiles.Tests
         public async Task Should_use_gzip_before_brotli_CompressedStaticFileOptions()
         {
             // Arrange
-            var options = new CompressedStaticFileOptions();
+            var options = new PreCompressedStaticFileOptions();
             options.CompressionTypes.Add<Gzip>();
             options.CompressionTypes.Add<Brotli>();
 
@@ -262,7 +263,7 @@ namespace CompressedStaticFiles.Tests
         public async Task Should_use_brotli_before_gzip_CompressedStaticFileOptions()
         {
             // Arrange
-            var options = new CompressedStaticFileOptions();
+            var options = new PreCompressedStaticFileOptions();
             options.CompressionTypes.Add<Brotli>();
             options.CompressionTypes.Add<Gzip>();
 

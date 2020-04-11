@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using CompressedStaticFiles.CompressionTypes;
+using AspNetCore.PreCompressedStaticFiles.CompressionTypes;
 
-namespace CompressedStaticFiles
+namespace AspNetCore.PreCompressedStaticFiles
 {
     public class CompressionTypeCollection : Collection<ICompressionType>
     {

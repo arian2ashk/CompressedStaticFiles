@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompressedStaticFiles", "src\CompressedStaticFiles\CompressedStaticFiles.csproj", "{2D397380-505F-498B-851B-A8268282557A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.PreCompressedStaticFiles", "src\CompressedStaticFiles\AspNetCore.PreCompressedStaticFiles.csproj", "{2D397380-505F-498B-851B-A8268282557A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0C8B9649-AF30-470F-BEFF-DC65BC0CD7CD}"
 EndProject

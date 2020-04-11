@@ -9,23 +9,14 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/AnderssonPeter/CompressedStaticFiles</PackageProjectUrl>
     <PackageTags>aspnetcore;staticfiles;compression;precompressed;gzip;brotli</PackageTags>
-    <PackageReleaseNotes>1.1.0
-New feature: Ability to specifiy a custom FileProvider (now using the FileProvider provided in the StaticFileOptions if it is set)
-      1.0.4
-Converted to .NET Standard 1.6
-1.0.3
-Fixed issue that disabled caching parameters.
-
-1.0.2
-Added support for IIS.
-
-1.0.1
-Added logging
-Picks original file if its the smallest
-Added support for .NETFramework 4.5.1
-
-1.0.0
-Initial release</PackageReleaseNotes>
+    <PackageReleaseNotes>
+      1.1.0
+      This package is based on https://github.com/AnderssonPeter/CompressedStaticFiles with support for Asp.Net Core 3.1 and some extra features.
+      New features:
+      1) Support for Asp.Net Core 3.1
+      2) Support for specifying the prefered compression types, by default the order is Gzip then Brotli.
+      3) Support for adding more compression types
+    </PackageReleaseNotes>
     <AssemblyVersion>1.1.0.0</AssemblyVersion>
   </PropertyGroup>
 

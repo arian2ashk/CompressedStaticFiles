@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CompressedStaticFiles\CompressedStaticFiles.csproj" />
+    <ProjectReference Include="..\CompressedStaticFiles\AspNetCore.PreCompressedStaticFiles.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.2" />
   </ItemGroup>
 

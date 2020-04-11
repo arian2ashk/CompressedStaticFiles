@@ -1,26 +1,26 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using AspNetCore.PreCompressedStaticFiles.CompressionTypes;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using CompressedStaticFiles.CompressionTypes;
 
-namespace CompressedStaticFiles
+namespace AspNetCore.PreCompressedStaticFiles
 {
-    public class CompressedStaticFileMiddleware
+    public class PreCompressedStaticFileMiddleware
     {
-        private readonly IOptions<CompressedStaticFileOptions> _compressedStaticFileOptions;
+        private readonly IOptions<PreCompressedStaticFileOptions> _compressedStaticFileOptions;
         private readonly StaticFileMiddleware _base;
         private readonly ILogger _logger;
 
-        public CompressedStaticFileMiddleware(
-            RequestDelegate next, IWebHostEnvironment hostingEnv, IOptions<CompressedStaticFileOptions> compressedStaticFileOptions, ILoggerFactory loggerFactory)
+        public PreCompressedStaticFileMiddleware(
+            RequestDelegate next, IWebHostEnvironment hostingEnv, IOptions<PreCompressedStaticFileOptions> compressedStaticFileOptions, ILoggerFactory loggerFactory)
         {
             if (next == null)
             {
@@ -37,7 +37,7 @@ namespace CompressedStaticFiles
                 throw new ArgumentNullException(nameof(hostingEnv));
             }
 
-            _logger = loggerFactory.CreateLogger<CompressedStaticFileMiddleware>();
+            _logger = loggerFactory.CreateLogger<PreCompressedStaticFileMiddleware>();
 
 
             _compressedStaticFileOptions = compressedStaticFileOptions ?? throw new ArgumentNullException(nameof(compressedStaticFileOptions));
@@ -52,7 +52,7 @@ namespace CompressedStaticFiles
             _base = new StaticFileMiddleware(next, hostingEnv, compressedStaticFileOptions, loggerFactory);
         }
 
-        private static void InitializeStaticFileOptions(IWebHostEnvironment hostingEnv, IOptions<CompressedStaticFileOptions> compressedStaticFileOptions)
+        private static void InitializeStaticFileOptions(IWebHostEnvironment hostingEnv, IOptions<PreCompressedStaticFileOptions> compressedStaticFileOptions)
         {
             compressedStaticFileOptions.Value.FileProvider ??= hostingEnv.WebRootFileProvider;
             var contentTypeProvider = compressedStaticFileOptions.Value.ContentTypeProvider ?? new FileExtensionContentTypeProvider();

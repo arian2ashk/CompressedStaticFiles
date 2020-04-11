@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 
-namespace CompressedStaticFiles
+namespace AspNetCore.PreCompressedStaticFiles
 {
-    public class CompressedStaticFileOptions : StaticFileOptions
+    public class PreCompressedStaticFileOptions : StaticFileOptions
     {
         public CompressionTypeCollection CompressionTypes { get; } = new CompressionTypeCollection();
     }
