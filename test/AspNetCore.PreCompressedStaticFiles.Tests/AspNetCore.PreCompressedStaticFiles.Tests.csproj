@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\CompressedStaticFiles\AspNetCore.PreCompressedStaticFiles.csproj" />
+    <ProjectReference Include="..\..\src\AspNetCore.PreCompressedStaticFiles\AspNetCore.PreCompressedStaticFiles.csproj" />
   </ItemGroup>
 
   <ItemGroup>

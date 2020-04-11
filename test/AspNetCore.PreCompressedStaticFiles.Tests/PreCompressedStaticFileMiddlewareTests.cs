@@ -1,21 +1,20 @@
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
 
-using FluentAssertions;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.TestHost;
-using Microsoft.Extensions.FileProviders;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NSubstitute;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AspNetCore.PreCompressedStaticFiles;
 using AspNetCore.PreCompressedStaticFiles.CompressionTypes;
+using FluentAssertions;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
 
-namespace CompressedStaticFiles.Tests
+namespace AspNetCore.PreCompressedStaticFiles.Tests
 {
     [TestClass]
     public class PreCompressedStaticFileMiddlewareTests

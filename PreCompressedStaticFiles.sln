@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.PreCompressedStaticFiles", "src\CompressedStaticFiles\AspNetCore.PreCompressedStaticFiles.csproj", "{2D397380-505F-498B-851B-A8268282557A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.PreCompressedStaticFiles", "src\AspNetCore.PreCompressedStaticFiles\AspNetCore.PreCompressedStaticFiles.csproj", "{2D397380-505F-498B-851B-A8268282557A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0C8B9649-AF30-470F-BEFF-DC65BC0CD7CD}"
 EndProject
@@ -17,9 +17,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Readme.txt = Readme.txt
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example", "src\Example\Example.csproj", "{36CB5306-7C5D-4D34-918F-AC8A4A71E912}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.PreCompressedStaticFiles.Example", "src\AspNetCore.PreCompressedStaticFiles.Example\AspNetCore.PreCompressedStaticFiles.Example.csproj", "{36CB5306-7C5D-4D34-918F-AC8A4A71E912}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompressedStaticFiles.Tests", "CompressedStaticFiles.Tests\CompressedStaticFiles.Tests.csproj", "{3D5A45B2-A15B-49B2-BB4F-47FDC1B5A5ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.PreCompressedStaticFiles.Tests", "test\AspNetCore.PreCompressedStaticFiles.Tests\AspNetCore.PreCompressedStaticFiles.Tests.csproj", "{3D5A45B2-A15B-49B2-BB4F-47FDC1B5A5ED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{FD121229-19B3-4386-9466-60B174D11C97}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,6 +48,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{2D397380-505F-498B-851B-A8268282557A} = {0C8B9649-AF30-470F-BEFF-DC65BC0CD7CD}
 		{36CB5306-7C5D-4D34-918F-AC8A4A71E912} = {0C8B9649-AF30-470F-BEFF-DC65BC0CD7CD}
+		{3D5A45B2-A15B-49B2-BB4F-47FDC1B5A5ED} = {FD121229-19B3-4386-9466-60B174D11C97}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D8781CF2-14D0-4C67-A2D7-C8AD7BBCF2CE}
