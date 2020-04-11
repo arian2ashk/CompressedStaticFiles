@@ -5,7 +5,7 @@ namespace AspNetCore.PreCompressedStaticFiles
 {
     internal static class LoggerExtensions
     {
-        private static Action<ILogger, string, string, long, long, Exception> _logFileServed;
+        private static readonly Action<ILogger, string, string, long, long, Exception> _logFileServed;
 
         static LoggerExtensions()
         {

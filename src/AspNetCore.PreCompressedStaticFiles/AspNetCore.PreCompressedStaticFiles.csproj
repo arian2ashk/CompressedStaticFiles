@@ -2,19 +2,24 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <Authors>Arian Ashk</Authors>
     <Company></Company>
-    <Description>This will ensure that you application will serve gzipped files and brotli compressed files if the browser supports it.</Description>
+    <Description>
+      This is a middleware for Asp.Net Core 3.1 that provides a static files provider capable of providing pre-compressed static files like gzip and brotli.
+    </Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageProjectUrl>https://github.com/AnderssonPeter/CompressedStaticFiles</PackageProjectUrl>
-    <PackageTags>aspnetcore;staticfiles;compression;precompressed;gzip;brotli</PackageTags>
+    <PackageProjectUrl>https://github.com/arian2ashk/CompressedStaticFiles</PackageProjectUrl>
+    <PackageTags>aspnetcore;staticfiles;compression;precompressed;gzip;brotli;aspnetcoreprecompressed</PackageTags>
     <PackageReleaseNotes>
+      1.1.1
+      added documentation and cleanup
       1.1.0
       This package is based on https://github.com/AnderssonPeter/CompressedStaticFiles with support for Asp.Net Core 3.1 and some extra features.
+      For previous versions use https://www.nuget.org/packages/CompressedStaticFiles
       New features:
       1) Support for Asp.Net Core 3.1
-      2) Support for specifying the prefered compression types, by default the order is Gzip then Brotli.
+      2) Support for specifying the preferred compression types, by default the order is Gzip then Brotli.
       3) Support for adding more compression types
     </PackageReleaseNotes>
     <AssemblyVersion>1.1.0.0</AssemblyVersion>
